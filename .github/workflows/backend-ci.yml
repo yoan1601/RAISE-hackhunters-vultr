@@ -1,35 +1,43 @@
-name: Backend CI Pipeline
+# Backend CI Workflow
+name: Backend CI
 
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the main, develop, and yoan branches
   push:
-    branches: [main, develop]
+    branches: [ main, develop, yoan ]
   pull_request:
-    branches: [main, develop]
+    branches: [ main, develop, yoan ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-and-test-backend:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout code
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      # Set up Python 3.10 environment
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
         with:
-          python-version: '3.10'  # Adjust as needed
+          python-version: "3.10"
 
+      # Install dependencies using pip
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+        run: pip install -r backend/requirements.txt
 
-      - name: Lint code
-        run: |
-          pip install flake8
-          flake8 .
+      # Run flake8 linter
+      - name: Lint with flake8
+        run: flake8 .
+        working-directory: ./backend
 
-      - name: Run tests
-        run: |
-          pip install pytest
-          pytest
+      # Run tests with pytest
+      - name: Test with pytest
+        run: pytest
+        working-directory: ./backend

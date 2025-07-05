@@ -1,40 +1,50 @@
-name: Frontend CI Pipeline
+# Frontend CI Workflow
+name: Frontend CI
 
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the main, develop, and yoan branches
   push:
-    branches: [main, develop]
+    branches: [ main, develop, yoan ]
   pull_request:
-    branches: [main, develop]
+    branches: [ main, develop, yoan ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-and-test-frontend:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout code
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Cache Node.js modules
       - name: Cache Node.js modules
         uses: actions/cache@v3
         with:
-          path: frontend/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Set up Node.js
+      # Set up Node.js 18 environment
+      - name: Set up Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Adjust as needed
+          node-version: '18'
 
-      - name: Install frontend dependencies
-        run: yarn install
-        working-directory: frontend
+      # Install dependencies
+      - name: Install dependencies
+        run: cd frontend && npm install
 
-      - name: Run frontend tests
-        run: yarn test --watchAll=false
-        working-directory: frontend
+      # Run frontend tests
+      - name: Run tests
+        run: cd frontend && npm test
 
-      - name: Build frontend
-        run: yarn build
-        working-directory: frontend
+      # Build the React app
+      - name: Build React app
+        run: cd frontend && npm run build
