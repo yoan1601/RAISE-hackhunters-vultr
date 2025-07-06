@@ -14,9 +14,12 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ghcr.io/yoan1601/frontend:${{COMMIT_SHA}}
+        image: ghcr.io/yoan1601/frontend:${COMMIT_SHA}
         ports:
         - containerPort: 80
+        env:
+        - name: REACT_APP_BACKEND_URL
+          value: ${REACT_APP_BACKEND_URL}
 ---
 apiVersion: v1
 kind: Service
