@@ -1,7 +1,7 @@
 // src/LandingPage.js
 
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Particles, { initParticlesEngine } from "@tsparticles/react"; // <<< Naya Import
 import { loadSlim } from "@tsparticles/slim"; // <<< Naya Import
 import particlesConfig from './particlesConfig';

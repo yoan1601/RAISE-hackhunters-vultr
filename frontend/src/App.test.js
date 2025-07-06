@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import MainApp from './MainApp';
+
+test('renders Multi-Agent Product Launcher title', () => {
+  render(<MainApp />);
+  const titleElement = screen.getByText(/Multi-Agent Product Launcher/i);
+  expect(titleElement).toBeInTheDocument();
 });
