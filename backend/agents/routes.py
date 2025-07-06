@@ -4,8 +4,10 @@ from pydantic import BaseModel
 
 router = APIRouter()
 
+
 class PromptRequest(BaseModel):
     prompt: str
+
 
 @router.post("/chat")
 def get_agent_response(data: PromptRequest):

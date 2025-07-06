@@ -1,5 +1,6 @@
 from mcp.message import Message
 
+
 class ContentAgent:
     def __init__(self, name, bus, context_manager):
         self.name = name

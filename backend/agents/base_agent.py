@@ -6,6 +6,7 @@ from phi.model.groq import Groq
 
 load_dotenv()
 
+
 class BaseAgent:
     def __init__(self, name, system_prompt):
         self.model = Groq(

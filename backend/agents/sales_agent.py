@@ -1,8 +1,9 @@
 # agents/sales_agent.py
 
-from mcp.message import Message
 from groq import Groq
 import os
+
+
 class SalesAgent:
     def __init__(self, name, bus, context_manager):
         self.name = name

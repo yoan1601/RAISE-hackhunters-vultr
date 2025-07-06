@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
+
 from pydantic import BaseModel
 from dotenv import load_dotenv
 from groq import Groq
@@ -24,11 +24,13 @@ app.add_middleware(
 
 # Setup Groq API
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-llm_model = os.getenv("LLM_MODEL", "llama3-70b-8192") # <<< HUM BARA MODEL ISTEMAL KARENGE DETAILED JAWAB KE LIYE
+llm_model = os.getenv("LLM_MODEL", "llama3-70b-8192")  # HUM BARA MODEL ISTEMAL KARENGE DETAILED JAWAB KE LIYE
+
 
 # Pydantic schema
 class IdeaInput(BaseModel):
     idea: str
+
 
 # Agent class (No changes needed here)
 class Agent:
@@ -100,6 +102,7 @@ support_prompt = """You are a Chief Customer Officer (CCO) obsessed with creatin
     4.  **Key Performance Indicators (KPIs) for Success:** What metrics will you track to ensure your support is world-class (e.g., Customer Satisfaction (CSAT), Net Promoter Score (NPS), First Contact Resolution (FCR))?
 """
 
+
 # Agents ko naye prompts ke saath banana
 support_agent = Agent("SupportAgent", support_prompt)
 sales_agent = Agent("SalesAgent", sales_prompt, next_agent=support_agent)
@@ -122,6 +125,7 @@ async def process_idea(data: IdeaInput):
         return JSONResponse(content={"workflow": [], "error": f"Server error: {str(e)}"}, status_code=500)
 
 # ... (baaqi code waisa hi rahega)
+
 
 @app.get("/api")
 async def api_root():

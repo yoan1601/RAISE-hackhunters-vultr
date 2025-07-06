@@ -1,6 +1,5 @@
 // src/App.js
 
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import MainApp from './MainApp';
