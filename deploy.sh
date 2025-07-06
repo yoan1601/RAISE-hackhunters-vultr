@@ -16,6 +16,9 @@ echo "Building and pushing frontend image..."
 docker build -t $FRONTEND_IMAGE ./frontend
 docker push $FRONTEND_IMAGE
 
+echo "Applying Kubernetes deployments..."
+kubectl apply -f k8s/
+
 echo "Updating Kubernetes deployments..."
 kubectl set image deployment/backend-deployment backend=$BACKEND_IMAGE
 kubectl set image deployment/frontend-deployment frontend=$FRONTEND_IMAGE
