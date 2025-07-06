@@ -88,6 +88,14 @@ jobs:
           mkdir -p $HOME/.kube
           echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
 
+      - name: Create or Update Image Pull Secret
+        run: |
+          kubectl create secret docker-registry regcred \
+            --docker-server=ghcr.io \
+            --docker-username=${{ secrets.REGISTRY_USERNAME }} \
+            --docker-password=${{ secrets.REGISTRY_TOKEN }} \
+            --dry-run=client -o yaml | kubectl apply -f -
+
       - name: Deploy to Kubernetes
         run: |
           chmod +x ./deploy.sh
