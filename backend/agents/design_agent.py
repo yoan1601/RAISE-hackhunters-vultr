@@ -1,12 +1,12 @@
 from mcp.message import Message
 from groq import Groq
-
+import os
 class DesignAgent:
     def __init__(self, name, bus, context_manager):
         self.name = name
         self.bus = bus
         self.context = context_manager
-        self.client = Groq(api_key="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")
+        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
         self.model_id = "llama-3.3-70b-versatile"
 
     def generate_design(self, prompt):
