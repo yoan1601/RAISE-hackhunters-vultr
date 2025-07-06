@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000', // Use environment variable or default to localhost
+  baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:8000',
 });
 
 export const checkBackendHealth = () => client.get('/health');
