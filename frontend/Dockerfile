@@ -7,6 +7,7 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 COPY . .
+ENV REACT_APP_BACKEND_URL=http://backend-service:8000
 RUN npm run build
 
 FROM nginx:alpine
