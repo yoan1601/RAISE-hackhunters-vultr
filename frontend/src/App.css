@@ -1,3 +1,184 @@
-.App {
+/* frontend/src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --bg-color: #f0f2f5;
+  --card-bg: #ffffff;
+  --text-color: #333;
+  --primary-color: #007bff;
+  --border-color: #e0e0e0;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  --design-color: #9b59b6;
+  --marketing-color: #3498db;
+  --sales-color: #2ecc71;
+  --support-color: #e67e22;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.app-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.app-header {
   text-align: center;
+  margin-bottom: 40px;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.form-container form {
+  display: flex;
+  gap: 10px;
+  box-shadow: var(--shadow);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.form-container input {
+  flex-grow: 1;
+  border: none;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.form-container button {
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
+
+.form-container button:disabled {
+  background-color: #a0cfff;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #c0392b;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.workflow-container {
+  margin-top: 40px;
+}
+
+.workflow-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #27ae60;
+}
+
+.timeline {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--border-color);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+  padding-left: 50px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 12px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 4px solid var(--border-color);
+}
+
+/* Agent specific colors for dot and border */
+.agent-design .timeline-dot { border-color: var(--design-color); }
+.agent-marketing .timeline-dot { border-color: var(--marketing-color); }
+.agent-sales .timeline-dot { border-color: var(--sales-color); }
+.agent-support .timeline-dot { border-color: var(--support-color); }
+
+.timeline-content {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border-left: 5px solid var(--border-color);
+}
+
+/* Agent specific colors for content border */
+.agent-design .timeline-content { border-left-color: var(--design-color); }
+.agent-marketing .timeline-content { border-left-color: var(--marketing-color); }
+.agent-sales .timeline-content { border-left-color: var(--sales-color); }
+.agent-support .timeline-content { border-left-color: var(--support-color); }
+
+.agent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.agent-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: white;
+}
+
+.tag.received { background-color: #7f8c8d; }
+.tag.response { background-color: #2980b9; }
+
+.agent-response {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #555;
+  background-color: #fdfdfd;
+  padding: 10px;
+  border-radius: 4px;
 }

@@ -1,12 +1,16 @@
+// src/App.js
+
 import React from 'react';
-import HealthCheck from './components/HealthCheck';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import LandingPage from './LandingPage';
+import MainApp from './MainApp';
 
 function App() {
   return (
-    <div className="App">
-      <HealthCheck />
-    </div>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/app" element={<MainApp />} />
+    </Routes>
   );
 }
 

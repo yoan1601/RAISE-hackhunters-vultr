@@ -1,0 +1,234 @@
+/* src/MainApp.css - Final High-Tech Theme */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+/* Naya code jo particles ko handle karega */
+.main-app-page-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#tsparticles-main {
+  position: fixed; /* 'fixed' taake scroll karne par bhi background wahi rahe */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Isko sab se peeche bhej dein */
+}
+
+/* app-container ko upar laane ke liye */
+.app-container {
+  position: relative;
+  z-index: 1;
+}
+:root {
+  /* Matching the landing page theme */
+  --bg-color: #050816;
+  --primary-glow: #915eff;
+  --text-primary: #ffffff; /* Pure white for main headings */
+  --text-secondary: #aaa6c3; /* Dim color for less important text */
+  --text-readable: #e3e3e3; /* Bright off-white for response text */
+
+  --design-color: #e040fb;    /* Pink/Purple */
+  --marketing-color: #29b6f6; /* Blue */
+  --sales-color: #00e676;     /* Green */
+  --support-color: #ffc400;    /* Amber/Yellow */
+}
+
+body {
+  background-color: var(--bg-color);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-primary);
+}
+
+.app-container {
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.app-header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow);
+  margin-bottom: 10px;
+}
+
+.app-header p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: auto;
+}
+
+/* --- HIGH-TECH GLASSMORPHISM FORM --- */
+.form-container {
+  margin-bottom: 60px;
+}
+
+.idea-form {
+  display: flex;
+  background: rgba(145, 94, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(145, 94, 255, 0.2);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(145, 94, 255, 0.1);
+}
+
+.idea-input {
+  flex-grow: 1;
+  border: none;
+  background: none;
+  padding: 20px 25px;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.idea-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.idea-submit-button {
+  border: none;
+  background-color: var(--primary-glow);
+  color: white;
+  padding: 0 35px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(145, 94, 255, 0.5);
+}
+
+.idea-submit-button:hover {
+  box-shadow: 0 0 25px var(--primary-glow), 0 0 40px rgba(145, 94, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+.idea-submit-button:disabled {
+  background-color: #555;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff4d4d;
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+/* --- FUTURISTIC TIMELINE --- */
+.workflow-container h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  color: #00e676; /* Green checkmark color */
+  text-shadow: 0 0 10px rgba(0, 230, 118, 0.5);
+}
+
+.timeline {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--primary-glow), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+  padding-left: 60px;
+  animation: slideUpFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes slideUpFadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 12px;
+  top: 15px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.agent-design .timeline-dot { background: var(--design-color); box-shadow: 0 0 15px var(--design-color); }
+.agent-marketing .timeline-dot { background: var(--marketing-color); box-shadow: 0 0 15px var(--marketing-color); }
+.agent-sales .timeline-dot { background: var(--sales-color); box-shadow: 0 0 15px var(--sales-color); }
+.agent-support .timeline-dot { background: var(--support-color); box-shadow: 0 0 15px var(--support-color); }
+
+.timeline-content {
+  background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.agent-header h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.agent-design h3 { color: var(--design-color); }
+.agent-marketing h3 { color: var(--marketing-color); }
+.agent-sales h3 { color: var(--sales-color); }
+.agent-support h3 { color: var(--support-color); }
+
+/* --- YAHAN TEXT KI READABILITY THEEK KI GAYI HAI --- */
+
+.agent-response {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+  /* Normal text ko bright aur readable banaya gaya hai */
+  color: var(--text-readable);
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
+
+.agent-response strong {
+  /* Headings ko alag line par, behtar spacing ke saath dikhaya gaya hai */
+  display: block;
+  margin-top: 1.2em;
+  margin-bottom: 0.6em;
+  /* Headings ko bilkul safaid banaya gaya hai taake woh alag se nazar aayein */
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* Pehli heading ke upar extra space khatam kiya gaya hai */
+.agent-response strong:first-child {
+  margin-top: 0;
+}
