@@ -15,6 +15,8 @@ spec:
       containers:
       - name: backend
         image: ghcr.io/yoan1601/backend:${{COMMIT_SHA}}
+        imagePullSecrets:
+        - name: regcred
         ports:
         - containerPort: 8000
 ---
