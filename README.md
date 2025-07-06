@@ -33,7 +33,7 @@ A web-based AI agent platform designed to automate and optimize complex enterpri
 
 **Client:** ReactJS
 
-**Server:** Node, Express
+**Server:** Python
 
 **Additionnal stack:** Llama model integration, GroqCloud API integration, Coral Protocol integration
 
