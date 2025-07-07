@@ -1,28 +1,15 @@
 // src/LandingPage.js
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Particles, { initParticlesEngine } from "@tsparticles/react"; // <<< Naya Import
-import { loadSlim } from "@tsparticles/slim"; // <<< Naya Import
+import Particles from "@tsparticles/react";
 import particlesConfig from './particlesConfig';
-import { FaLaptopCode, FaTrophy, FaUsers } from 'react-icons/fa';
+import { FaUsers } from 'react-icons/fa'; // Removed unused FaLaptopCode, FaTrophy
 import './LandingPage.css';
+import useParticlesInit from './hooks/useParticlesInit';
 
 function LandingPage() {
-  const [init, setInit] = useState(false);
-
-  // This effect runs once on component mount to initialize the particles engine.
-  useEffect(() => {
-    const initializeParticles = async () => {
-      await initParticlesEngine(async (engine) => {
-        // Load the slim version of tsparticles, which is sufficient for this config.
-        await loadSlim(engine);
-      });
-      setInit(true);
-    };
-
-    initializeParticles();
-  }, []); // The empty dependency array ensures this effect runs only once.
+  const init = useParticlesInit();
 
   return (
     <div className="landing-container">

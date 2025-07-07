@@ -3,6 +3,10 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+// Polyfill TextEncoder for Jest environment
+import { TextEncoder } from 'util';
+
+global.TextEncoder = TextEncoder;
 
 // Mock react-router to prevent issues in tests
 jest.mock('react-router-dom', () => ({ // Use a more robust mock
@@ -14,7 +18,3 @@ jest.mock('react-router-dom', () => ({ // Use a more robust mock
   useLocation: () => ({ pathname: '/' }),
   Link: ({ to, children }) => <a href={to}>{children}</a>, // A more realistic Link
 }));
-
-// Polyfill TextEncoder for Jest environment
-import { TextEncoder } from 'util';
-global.TextEncoder = TextEncoder;

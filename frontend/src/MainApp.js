@@ -1,10 +1,10 @@
 // src/MainApp.js
 
-import React, { useState, useEffect } from 'react';
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import React, { useState } from 'react';
+import Particles from "@tsparticles/react";
 import particlesConfig from './particlesConfig';
 import './MainApp.css';
+import useParticlesInit from './hooks/useParticlesInit';
 
 // Helper function to parse the log string (no changes here)
 const parseWorkflowStep = (stepString) => {
@@ -20,19 +20,7 @@ function MainApp() {
   const [error, setError] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
 
-  // State to track particle engine initialization
-  const [init, setInit] = useState(false);
-
-  // This effect runs once on component mount to initialize the particles engine.
-  useEffect(() => {
-    const initializeParticles = async () => {
-      await initParticlesEngine(async (engine) => {
-        await loadSlim(engine);
-      });
-      setInit(true);
-    };
-    initializeParticles();
-  }, []); // The empty dependency array ensures this effect runs only once.
+  const init = useParticlesInit();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
