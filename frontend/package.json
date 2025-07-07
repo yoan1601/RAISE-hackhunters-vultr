@@ -12,6 +12,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
@@ -25,8 +26,14 @@
   },
   "jest": {
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\](?!axios|@tsparticles).+\\.(js|jsx|mjs|cjs|ts|tsx)$"
-    ]
+      "[/\\\\]node_modules[/\\\\](?!axios|@tsparticles|react-icons|react-markdown|remark-.+|rehype-.+|unified|unist-.+|hast-.+|bail|trough|property-information|vfile|devlop|comma-separated-tokens|estree-util-is-identifier-name|space-separated-tokens|html-url-attributes|mdast-util-from-markdown|mdast-util-to-string|micromark|decode-named-character-reference|character-entities|mdast-util-to-hast|trim-lines|is-plain-obj).+\\.(js|jsx|mjs|cjs|ts|tsx)$"
+    ],
+    "moduleNameMapper": {
+      "^unist-util-visit-parents/do-not-use-color$": "<rootDir>/src/__mocks__/unist-util-visit-parents/do-not-use-color.js",
+      "^#minpath$": "<rootDir>/node_modules/vfile/lib/minpath.js",
+      "^#minproc$": "<rootDir>/node_modules/vfile/lib/minproc.js",
+      "^#minurl$": "<rootDir>/node_modules/vfile/lib/minurl.js"
+    }
   },
   "proxy": "http://127.0.0.1:8000",
   "browserslist": {
