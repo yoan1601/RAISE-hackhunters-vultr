@@ -93,6 +93,22 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_TOKEN }}
 
+      - name: Build and push backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: true
+          tags: ghcr.io/yoan1601/backend:${{ github.sha }}
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v5
+        with:
+          # The context is the frontend directory, which now contains
+          # the downloaded 'build' artifact from the previous job.
+          context: ./frontend
+          push: true
+          tags: ghcr.io/yoan1601/frontend:${{ github.sha }}
+
       - name: Set up kubectl
         uses: azure/setup-kubectl@v3
         with:
