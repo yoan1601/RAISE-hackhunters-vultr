@@ -97,6 +97,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./backend
+          no-cache: true
           push: true
           tags: ghcr.io/yoan1601/backend:${{ github.sha }}
 
@@ -106,6 +107,7 @@ jobs:
           # The context is the frontend directory, which now contains
           # the downloaded 'build' artifact from the previous job.
           context: ./frontend
+          no-cache: true
           push: true
           tags: ghcr.io/yoan1601/frontend:${{ github.sha }}
 
