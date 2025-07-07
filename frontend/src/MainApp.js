@@ -1,10 +1,10 @@
 // src/MainApp.js
 
-import React, { useState, useEffect } from 'react';
-import Particles, { initParticlesEngine } from "@tsparticles/react"; // <<< NAYI CHEEZ
-import { loadSlim } from "@tsparticles/slim"; // <<< NAYI CHEEZ
-import particlesConfig from './particlesConfig'; // <<< NAYI CHEEZ
+import React, { useState } from 'react';
+import Particles from "@tsparticles/react";
+import particlesConfig from './particlesConfig';
 import './MainApp.css';
+import useParticlesInit from './hooks/useParticlesInit';
 
 // Helper function to parse the log string (no changes here)
 const parseWorkflowStep = (stepString) => {
@@ -20,17 +20,7 @@ function MainApp() {
   const [error, setError] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
 
-  // --- NAYI CHEEZ: Particles engine ko initialize karne ke liye state ---
-  const [init, setInit] = useState(false);
-
-  useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
-  // --- YAHAN TAK NAYI CHEEZ KHATAM ---
+  const init = useParticlesInit();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,9 +57,8 @@ function MainApp() {
     .filter(step => step && step.type === 'response');
 
   return (
-    // Is container ko bhi 'relative' position deni hogi
     <div className="main-app-page-container">
-      {/* --- NAYI CHEEZ: Particles component as background --- */}
+      {/* Render particles once the engine is initialized */}
       {init && (
         <Particles
           id="tsparticles-main"

@@ -1,29 +1,18 @@
 // src/LandingPage.js
 
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router';
-import Particles, { initParticlesEngine } from "@tsparticles/react"; // <<< Naya Import
-import { loadSlim } from "@tsparticles/slim"; // <<< Naya Import
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Particles from "@tsparticles/react";
 import particlesConfig from './particlesConfig';
-import { FaLaptopCode, FaTrophy, FaUsers } from 'react-icons/fa';
+import { FaUsers } from 'react-icons/fa'; // Removed unused FaLaptopCode, FaTrophy
 import './LandingPage.css';
+import useParticlesInit from './hooks/useParticlesInit';
 
 function LandingPage() {
-  const [init, setInit] = useState(false);
-
-  // Yeh useEffect hook sirf ek baar chalega aur particle engine ko initialize karega
-  useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      // Yahan aap particles ke shapes aur features load kar sakti hain
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
+  const init = useParticlesInit();
 
   return (
     <div className="landing-container">
-      {/* Jab tak engine initialize na ho, particles nahi dikhenge */}
       {init && (
         <Particles
           id="tsparticles"
