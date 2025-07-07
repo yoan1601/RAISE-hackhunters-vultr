@@ -2,8 +2,13 @@
 set -e
 
 # Variables
-REGISTRY=ghcr.io/yoan1601
 COMMIT_SHA=$1
+if [ -z "$COMMIT_SHA" ]; then
+    echo "Error: Commit SHA is required. Pass it as the first argument."
+    exit 1
+fi
+
+REGISTRY=ghcr.io/yoan1601
 BACKEND_SERVICE_NAME="backend-service" # Name of the Kubernetes service for the backend
 BACKEND_PORT="8000" # Port the backend service exposes
 
@@ -25,9 +30,9 @@ export COMMIT_SHA
 export REACT_APP_BACKEND_URL="http://${BACKEND_SERVICE_NAME}:${BACKEND_PORT}"
 
 # Process backend deployment
-envsubst < k8s/backend-deployment.yaml | kubectl apply -f -
+envsubst '$COMMIT_SHA' < k8s/backend-deployment.yaml | kubectl apply -f -
 
 # Process frontend deployment
-envsubst < k8s/frontend-deployment.yaml | kubectl apply -f -
+envsubst '$COMMIT_SHA $REACT_APP_BACKEND_URL' < k8s/frontend-deployment.yaml | kubectl apply -f -
 
 echo "Deployment complete."
