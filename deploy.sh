@@ -8,6 +8,8 @@ if [ -z "$COMMIT_SHA" ]; then
     exit 1
 fi
 
+echo "Deploying application with commit SHA: $COMMIT_SHA"
+
 REGISTRY=ghcr.io/yoan1601
 BACKEND_SERVICE_NAME="backend-service" # Name of the Kubernetes service for the backend
 BACKEND_PORT="8000" # Port the backend service exposes
