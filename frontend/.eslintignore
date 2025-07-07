@@ -1,1 +1,9 @@
+# Ignorer les fichiers dans le dossier node_modules
+node_modules/
+# Ignorer les fichiers de distribution
+dist/
+# Ignorer les fichiers de test
+*.test.js
+# Re-inclure un fichier précédemment ignoré
+!important.js
 build

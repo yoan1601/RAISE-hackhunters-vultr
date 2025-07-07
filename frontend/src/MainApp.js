@@ -1,9 +1,9 @@
 // src/MainApp.js
 
 import React, { useState, useEffect } from 'react';
-import Particles, { initParticlesEngine } from "@tsparticles/react"; // <<< NAYI CHEEZ
-import { loadSlim } from "@tsparticles/slim"; // <<< NAYI CHEEZ
-import particlesConfig from './particlesConfig'; // <<< NAYI CHEEZ
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import particlesConfig from './particlesConfig';
 import './MainApp.css';
 
 // Helper function to parse the log string (no changes here)
@@ -20,17 +20,19 @@ function MainApp() {
   const [error, setError] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
 
-  // --- NAYI CHEEZ: Particles engine ko initialize karne ke liye state ---
+  // State to track particle engine initialization
   const [init, setInit] = useState(false);
 
+  // This effect runs once on component mount to initialize the particles engine.
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
+    const initializeParticles = async () => {
+      await initParticlesEngine(async (engine) => {
+        await loadSlim(engine);
+      });
       setInit(true);
-    });
-  }, []);
-  // --- YAHAN TAK NAYI CHEEZ KHATAM ---
+    };
+    initializeParticles();
+  }, []); // The empty dependency array ensures this effect runs only once.
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,9 +69,8 @@ function MainApp() {
     .filter(step => step && step.type === 'response');
 
   return (
-    // Is container ko bhi 'relative' position deni hogi
     <div className="main-app-page-container">
-      {/* --- NAYI CHEEZ: Particles component as background --- */}
+      {/* Render particles once the engine is initialized */}
       {init && (
         <Particles
           id="tsparticles-main"

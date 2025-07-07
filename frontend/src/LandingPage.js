@@ -1,7 +1,7 @@
 // src/LandingPage.js
 
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import Particles, { initParticlesEngine } from "@tsparticles/react"; // <<< Naya Import
 import { loadSlim } from "@tsparticles/slim"; // <<< Naya Import
 import particlesConfig from './particlesConfig';
@@ -11,19 +11,21 @@ import './LandingPage.css';
 function LandingPage() {
   const [init, setInit] = useState(false);
 
-  // Yeh useEffect hook sirf ek baar chalega aur particle engine ko initialize karega
+  // This effect runs once on component mount to initialize the particles engine.
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      // Yahan aap particles ke shapes aur features load kar sakti hain
-      await loadSlim(engine);
-    }).then(() => {
+    const initializeParticles = async () => {
+      await initParticlesEngine(async (engine) => {
+        // Load the slim version of tsparticles, which is sufficient for this config.
+        await loadSlim(engine);
+      });
       setInit(true);
-    });
-  }, []);
+    };
+
+    initializeParticles();
+  }, []); // The empty dependency array ensures this effect runs only once.
 
   return (
     <div className="landing-container">
-      {/* Jab tak engine initialize na ho, particles nahi dikhenge */}
       {init && (
         <Particles
           id="tsparticles"

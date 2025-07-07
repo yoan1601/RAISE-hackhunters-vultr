@@ -1,6 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router';
-import App from './App';
 
 import MainApp from './MainApp';
 
