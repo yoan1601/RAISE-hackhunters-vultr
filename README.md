@@ -100,6 +100,7 @@ To report a bug or request a feature, please open an issue.
 
 -   @yoan1601
 -   @Eriq606
+-   @Z-bintayAfzal
 -   @sammed979
 
 Project Link: https://github.com/yoan1601/RAISE-hackhunters-vultr
