@@ -54,6 +54,9 @@ jobs:
       - name: Run tests
         run: cd frontend && npm test
 
+      - name: Clean previous build artifacts
+        run: rm -rf frontend/build
+
       - name: Build the React app
         run: cd frontend && npm run build
 
