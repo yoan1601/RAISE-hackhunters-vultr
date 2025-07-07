@@ -19,9 +19,6 @@ spec:
         - containerPort: 80
       imagePullSecrets:
         - name: regcred
-      env:
-        - name: REACT_APP_BACKEND_URL
-          value: ${REACT_APP_BACKEND_URL}
 
 apiVersion: v1
 kind: Service
