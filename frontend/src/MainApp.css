@@ -1,4 +1,4 @@
-/* src/MainApp.css - Final High-Tech Theme */
+/* src/MainApp.css - Final High-Tech Theme with Advanced Markdown Styling */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
 /* Naya code jo particles ko handle karega */
@@ -49,6 +49,8 @@ body {
   padding: 20px;
 }
 
+/* ... Baqi ka CSS (header, form, timeline) jaisa tha waisa hi rahega ... */
+
 .app-header {
   text-align: center;
   margin-bottom: 50px;
@@ -69,7 +71,6 @@ body {
   margin: auto;
 }
 
-/* --- HIGH-TECH GLASSMORPHISM FORM --- */
 .form-container {
   margin-bottom: 60px;
 }
@@ -131,7 +132,6 @@ body {
   font-weight: 500;
 }
 
-/* --- FUTURISTIC TIMELINE --- */
 .workflow-container h2 {
   text-align: center;
   margin-bottom: 40px;
@@ -203,15 +203,70 @@ body {
 .agent-sales h3 { color: var(--sales-color); }
 .agent-support h3 { color: var(--support-color); }
 
-/* --- YAHAN TEXT KI READABILITY THEEK KI GAYI HAI --- */
+/* --- PURANI STYLING KO HATA KAR NAYI MARKDOWN STYLING ADD KI GAYI HAI --- */
 
+.agent-response-markdown {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-readable); /* Normal text ke liye readable color */
+}
+
+/* Headings (e.g., # Heading) ke liye styling */
+.agent-response-markdown h1,
+.agent-response-markdown h2,
+.agent-response-markdown h3,
+.agent-response-markdown h4 {
+  color: var(--text-primary);
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgba(145, 94, 255, 0.3); /* theme ke hisab se border */
+}
+
+.agent-response-markdown h3:first-child,
+.agent-response-markdown h4:first-child {
+  margin-top: 0;
+}
+
+/* Lists (e.g., - item) ke liye styling */
+.agent-response-markdown ul,
+.agent-response-markdown ol {
+  padding-left: 25px;
+  margin-bottom: 1em;
+}
+
+.agent-response-markdown li {
+  margin-bottom: 0.5em;
+}
+
+/* --- YEH HAI AAPKI CUSTOM HIGHLIGHTING KI STYLING (OPTION 3) --- */
+.highlight-underline {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: none; /* Default underline ko hatayein */
+
+  /* Thick underline jo text se thora neeche ho */
+  border-bottom: 3px solid var(--primary-glow);
+  padding-bottom: 2px;
+
+  /* Hover par halka sa effect */
+  transition: all 0.2s ease-in-out;
+}
+
+.highlight-underline:hover {
+  background-color: rgba(145, 94, 255, 0.1);
+  border-bottom-color: #fff;
+}
+
+
+/* --- YEH PURANI STYLING HAI, AB ISKI ZAROORAT NAHI --- */
+/*
 .agent-response {
   white-space: pre-wrap;
   word-wrap: break-word;
   font-size: 1rem;
   line-height: 1.7;
   margin: 0;
-  /* Normal text ko bright aur readable banaya gaya hai */
   color: var(--text-readable);
   background-color: transparent;
   padding: 0;
@@ -219,16 +274,14 @@ body {
 }
 
 .agent-response strong {
-  /* Headings ko alag line par, behtar spacing ke saath dikhaya gaya hai */
   display: block;
   margin-top: 1.2em;
   margin-bottom: 0.6em;
-  /* Headings ko bilkul safaid banaya gaya hai taake woh alag se nazar aayein */
   color: var(--text-primary);
   font-weight: 700;
 }
 
-/* Pehli heading ke upar extra space khatam kiya gaya hai */
 .agent-response strong:first-child {
   margin-top: 0;
 }
+*/
