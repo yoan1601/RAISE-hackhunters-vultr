@@ -1,7 +1,8 @@
 // src/MainApp.js
 
 import React, { useState } from 'react';
-import Particles from "@tsparticles/react";
+import Particles from '@tsparticles/react';
+import apiClient from './api'; // Import the axios client
 import particlesConfig from './particlesConfig';
 import './MainApp.css';
 import useParticlesInit from './hooks/useParticlesInit';
@@ -33,20 +34,29 @@ function MainApp() {
     setWorkflow([]);
     setIsGenerated(false);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/process-idea`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idea }),
-      });
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ error: 'Invalid server response' }));
-        throw new Error(errorData.error || `Server error: ${response.status}`);
-      }
-      const data = await response.json();
-      setWorkflow(data.workflow);
+      // Use the pre-configured axios client. The baseURL is already set.
+      const response = await apiClient.post('/process-idea', { idea });
+
+      // With axios, the response data is in the `data` property
+      setWorkflow(response.data.workflow);
       setIsGenerated(true);
     } catch (err) {
-      setError(`Failed to process idea. Error: ${err.message}`);
+      // Enhanced error handling for axios
+      let errorMessage = 'Failed to process idea.';
+      if (err.response) {
+        // The server responded with a status code outside the 2xx range
+        const serverError =
+          err.response.data?.error || `Server error: ${err.response.status}`;
+        errorMessage += ` Error: ${serverError}`;
+      } else if (err.request) {
+        // The request was made but no response was received
+        errorMessage +=
+          ' Error: No response from server. Please check your network connection.';
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        errorMessage += ` Error: ${err.message}`;
+      }
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
