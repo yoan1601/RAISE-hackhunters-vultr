@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
 
-test('renders Backend Health Check title', () => {
-  render(<App />);
-  const titleElement = screen.getByText(/Backend Health Check/i);
+import MainApp from './MainApp';
+
+test('renders Multi-Agent Product Launcher title', () => {
+  render(<MainApp />);
+  const titleElement = screen.getByText(/Multi-Agent Product Launcher/i);
   expect(titleElement).toBeInTheDocument();
 });

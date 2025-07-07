@@ -1,5 +1,8 @@
-fastapi
-uvicorn
-pytest
+fastapi==0.115.14
+groq==0.29.0
+phi==0.6.7
+pip==25.1.1
+pydantic==2.11.7
+python-dotenv==1.1.1
 flake8
-httpx
+pytest

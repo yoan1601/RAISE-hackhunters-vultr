@@ -15,7 +15,7 @@ pip install -r requirements.txt
 To run the app locally, use the following command:
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 ```
 
 ## Running Tests

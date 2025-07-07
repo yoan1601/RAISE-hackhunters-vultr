@@ -1,1 +1,23 @@
 frontend/node_modules
+backend/flake8_report.txt
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# Others
+.env

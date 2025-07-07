@@ -2,3 +2,4 @@
 ignore = E501
 per-file-ignores =
     get-pip.py:E402
+exclude = env,venv,build,dist,.git,__pycache__,*.pyc,*.pyo,*.pyd,.pytest_cache,.mypy_cache,.coverage,.tox,.eggs,.idea,.vscode
