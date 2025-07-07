@@ -1,9 +1,10 @@
 // src/MainApp.js
 
 import React, { useState, useEffect } from 'react';
-import Particles, { initParticlesEngine } from "@tsparticles/react"; // <<< NAYI CHEEZ
-import { loadSlim } from "@tsparticles/slim"; // <<< NAYI CHEEZ
-import particlesConfig from './particlesConfig'; // <<< NAYI CHEEZ
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import ReactMarkdown from 'react-markdown'; // Library import ki gayi
+import particlesConfig from './particlesConfig';
 import './MainApp.css';
 
 // Helper function to parse the log string (no changes here)
@@ -19,8 +20,6 @@ function MainApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
-
-  // --- NAYI CHEEZ: Particles engine ko initialize karne ke liye state ---
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -30,6 +29,14 @@ function MainApp() {
       setInit(true);
     });
   }, []);
+
+  // --- NAYI CHEEZ: Markdown components ke liye custom map ---
+  const markdownComponents = {
+    // <strong> tag ko handle karne ke liye (Option 3 ka style)
+    strong: ({ node, ...props }) => (
+      <span className="highlight-underline" {...props} />
+    ),
+  };
   // --- YAHAN TAK NAYI CHEEZ KHATAM ---
 
   const handleSubmit = async (e) => {
@@ -67,9 +74,7 @@ function MainApp() {
     .filter(step => step && step.type === 'response');
 
   return (
-    // Is container ko bhi 'relative' position deni hogi
     <div className="main-app-page-container">
-      {/* --- NAYI CHEEZ: Particles component as background --- */}
       {init && (
         <Particles
           id="tsparticles-main"
@@ -104,7 +109,12 @@ function MainApp() {
                       <div className="agent-header">
                         <h3>{step.agentName}</h3>
                       </div>
-                      <pre className="agent-response">{step.content}</pre>
+                      {/* --- YAHAN BADLAAV HAI: `pre` tag ko hata kar Markdown renderer lagaya gaya hai --- */}
+                      <div className="agent-response-markdown">
+                        <ReactMarkdown components={markdownComponents}>
+                          {step.content}
+                        </ReactMarkdown>
+                      </div>
                     </div>
                   </div>
                 );
