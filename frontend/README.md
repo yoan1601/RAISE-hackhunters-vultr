@@ -68,3 +68,33 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Frontend Pod Update Explanation
+
+During the deployment, the frontend pods were initially running an older Docker image tagged with a previous commit SHA. This happened because the frontend deployment had not been updated to use the latest image built from the most recent commit.
+
+## What was done?
+
+- The frontend Docker image was rebuilt and pushed with the latest commit SHA tag.
+- The Kubernetes frontend deployment was updated to reference this new image tag.
+- A rolling update was triggered, causing Kubernetes to replace the old pods with new ones using the updated image.
+
+## Commands used
+
+Assuming the latest commit SHA is stored in the variable `COMMIT_SHA`, the following commands were executed:
+
+    kubectl set image deployment/frontend-deployment frontend=ghcr.io/yoan1601/frontend:${COMMIT_SHA}
+    kubectl rollout status deployment/frontend-deployment
+
+
+These commands update the frontend deployment to use the new image tagged with `${COMMIT_SHA}` and wait until the rollout completes successfully.
+
+## Result
+
+- Frontend pods now run the Docker image built from the latest commit.
+- The frontend application serves the updated code and assets.
+- This ensures consistency between the deployed frontend and backend components.
+
+## Key Takeaway
+
+Always ensure that Kubernetes deployments explicitly reference the correct, updated image tags after each build to avoid running outdated versions in your cluster.
